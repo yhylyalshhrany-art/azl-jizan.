@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>العزل المائي والحراري – جازان</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #1B2F6E;
+      --blue-light: #2a4499;
+      --orange: #F59500;
+      --orange-light: #ffb330;
+      --white: #ffffff;
+      --gray: #f5f7fa;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --radius: 18px;
+      --shadow: 0 8px 32px rgba(27,47,110,0.13);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(145deg, #0f1c4d 0%, #1B2F6E 40%, #0d2060 100%);
+      min-height: 100vh;
+      padding: 16px;
+      color: var(--text);
+    }
+
+    .card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #1B2F6E 0%, #0d2060 60%, #162a70 100%);
+      padding: 36px 24px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(245,149,0,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(245,149,0,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .logo-wrap img {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      padding: 6px;
+    }
+
+    .badge-city {
+      display: inline-block;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .hero .tagline {
+      font-size: 15px;
+      color: var(--orange-light);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .offer-box {
+      background: linear-gradient(135deg, var(--orange) 0%, #ff8c00 100%);
+      border-radius: 14px;
+      padding: 14px 20px;
+      display: inline-block;
+      box-shadow: 0 4px 18px rgba(245,149,0,0.4);
+    }
+    .offer-box .offer-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .offer-box .offer-text {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--white);
+    }
+
+    /* ── DIVIDER ── */
+    .wave-divider {
+      width: 100%;
+      display: block;
+      margin-top: -2px;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 22px 22px 0;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 22px;
+      background: var(--orange);
+      border-radius: 4px;
+    }
+
+    /* ── SERVICES GRID ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .service-card {
+      background: var(--gray);
+      border-radius: 14px;
+      padding: 14px 12px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.25s ease;
+    }
+    .service-card:hover {
+      border-color: var(--orange);
+      background: #fff8ed;
+      transform: translateY(-2px);
+    }
+    .service-card .icon {
+      font-size: 30px;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .service-card .name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    /* ── FEATURES ── */
+    .features-list {
+      list-style: none;
+      margin-bottom: 22px;
+    }
+    .features-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      margin-bottom: 8px;
+      background: var(--gray);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      transition: background 0.2s;
+    }
+    .features-list li:hover { background: #fff3e0; }
+    .features-list li .check {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #1B2F6E, #2a4499);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: white;
+      font-size: 13px;
+    }
+
+    /* ── CONTACT SECTION ── */
+    .contact-section {
+      background: linear-gradient(135deg, #1B2F6E 0%, #0d2060 100%);
+      margin: 22px 22px 0;
+      border-radius: 18px;
+      padding: 22px 20px;
+      text-align: center;
+    }
+    .contact-section .contact-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 6px;
+    }
+    .contact-section .phone {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--orange-light);
+      letter-spacing: 2px;
+      margin-bottom: 18px;
+      direction: ltr;
+    }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 10px;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+    .btn-call { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; }
+    .btn-wa   { background: linear-gradient(135deg, #25D366, #128C7E); color: white; }
+    .btn svg  { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 16px 22px 22px;
+      text-align: center;
+    }
+    .designer-credit {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .designer-credit a {
+      color: var(--orange);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .designer-credit a:hover { text-decoration: underline; }
+    .copyright {
+      font-size: 11px;
+      color: #b0b8cc;
+    }
+
+    /* ── FLOATING BUTTONS ── */
+    .float-btns {
+      position: fixed;
+      left: 18px;
+      bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulse 2.5s infinite;
+    }
+    .float-btn:hover { transform: scale(1.12); box-shadow: 0 6px 24px rgba(0,0,0,0.35); }
+    .float-btn-wa   { background: #25D366; animation-delay: 0s; }
+    .float-btn-call { background: #2563eb; animation-delay: 0.5s; }
+    .float-btn svg  { width: 26px; height: 26px; }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 18px rgba(0,0,0,0.25); }
+      50%       { box-shadow: 0 4px 28px rgba(0,0,0,0.4), 0 0 0 6px rgba(255,255,255,0.15); }
+    }
+
+    @media (min-width: 520px) {
+      body { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="logo-wrap">
+        <img src="https://i.imgur.com/Yf9VZXU.png"
+             onerror="this.style.display='none'"
+             alt="شعار العزل المائي والحراري جازان" />
+      </div>
+      <div class="badge-city">📍 جازان</div>
+      <h1>العزل المائي<br/>والحراري</h1>
+      <p class="tagline">جودة عالية · ضمان معتمد · تنفيذ فوري</p>
+      <div class="offer-box">
+        <div class="offer-label">عرض خاص</div>
+        <div class="offer-text">اتصل الآن واحصل على معاينة مجانية</div>
+      </div>
+    </div>
+
+    <!-- SVG Wave -->
+    <svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 36" preserveAspectRatio="none">
+      <path d="M0,36 L0,18 Q60,0 120,18 T240,18 T360,18 T480,18 L480,36 Z" fill="#0d2060"/>
+    </svg>
+
+    <!-- SERVICES -->
+    <div class="section">
+      <p class="section-title">خدماتنا</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="icon">💧</span>
+          <span class="name">عزل مائي للأسطح</span>
+        </div>
+        <div class="service-card">
+          <span class="icon">🔥</span>
+          <span class="name">عزل حراري للمباني</span>
+        </div>
+        <div class="service-card">
+          <span class="icon">🛡️</span>
+          <span class="name">عزل خزانات المياه</span>
+        </div>
+        <div class="service-card">
+          <span class="icon">🏗️</span>
+          <span class="name">صيانة وإصلاح التسريبات</span>
+        </div>
+        <div class="service-card">
+          <span class="icon">🏠</span>
+          <span class="name">عزل الأرضيات</span>
+        </div>
+        <div class="service-card">
+          <span class="icon">⭐</span>
+          <span class="name">عزل الواجهات</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="section">
+      <p class="section-title">لماذا تختارنا؟</p>
+      <ul class="features-list">
+        <li><span class="check">✓</span> خبرة أكثر من 10 سنوات في مجال العزل</li>
+        <li><span class="check">✓</span> مواد عزل عالمية معتمدة وضمان على العمل</li>
+        <li><span class="check">✓</span> فريق متخصص ومدرّب على أعلى مستوى</li>
+        <li><span class="check">✓</span> أسعار منافسة وشفافية كاملة بلا مفاجآت</li>
+        <li><span class="check">✓</span> معاينة مجانية وفورية لموقع العمل</li>
+        <li><span class="check">✓</span> إنجاز سريع في الموعد المحدد</li>
+      </ul>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-section">
+      <p class="contact-label">تواصل معنا الآن</p>
+      <p class="phone">0594640874</p>
+      <div class="btn-row">
+        <a class="btn btn-call" href="tel:0594640874">
+          <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 5.5C3 14.06 9.94 21 18.5 21c.386 0 .762-.015 1.134-.04.44-.03.79-.36.79-.8V16.42c0-.4-.27-.75-.66-.87l-3.1-.95a.9.9 0 00-.94.28l-1.3 1.6a13.57 13.57 0 01-6.02-6.02l1.6-1.3a.9.9 0 00.28-.94l-.95-3.1A.88.88 0 007.46 4H3.8c-.44 0-.78.35-.8.79A18.5 18.5 0 003 5.5z"/>
+          </svg>
+          اتصل بنا
+        </a>
+        <a class="btn btn-wa" href="https://wa.me/966594640874" target="_blank" rel="noopener">
+          <svg fill="white" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          واتساب
+        </a>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p class="designer-credit">
+        تم التصميم بواسطة
+        <a href="https://wa.me/201029095046" target="_blank" rel="noopener">م. نجوي إبراهيم</a>
+      </p>
+      <p class="copyright">© 2026 العزل المائي والحراري جازان – جميع الحقوق محفوظة</p>
+    </div>
+
+  </div><!-- /card -->
+
+  <!-- FLOATING BUTTONS -->
+  <div class="float-btns">
+    <a class="float-btn float-btn-wa" href="https://wa.me/966594640874" target="_blank" rel="noopener" title="واتساب">
+      <svg fill="white" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+    <a class="float-btn float-btn-call" href="tel:0594640874" title="اتصال">
+      <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3 5.5C3 14.06 9.94 21 18.5 21c.386 0 .762-.015 1.134-.04.44-.03.79-.36.79-.8V16.42c0-.4-.27-.75-.66-.87l-3.1-.95a.9.9 0 00-.94.28l-1.3 1.6a13.57 13.57 0 01-6.02-6.02l1.6-1.3a.9.9 0 00.28-.94l-.95-3.1A.88.88 0 007.46 4H3.8c-.44 0-.78.35-.8.79A18.5 18.5 0 003 5.5z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    // Smooth entrance animation on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const card = document.querySelector('.card');
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      });
+
+      // Animate service cards on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.service-card, .features-list li').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+        el.style.transition = `opacity 0.5s ease ${i * 0.07}s, transform 0.5s ease ${i * 0.07}s`;
+        observer.observe(el);
+      });
+    });
+  </script>
+
+</body>
+</html>
